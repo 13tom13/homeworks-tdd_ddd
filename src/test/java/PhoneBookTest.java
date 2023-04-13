@@ -4,6 +4,9 @@ public class PhoneBookTest {
 
     PhoneBook phoneBook;
 
+    String testName = "Test";
+    int testNumber = 1;
+
     @BeforeAll
     public static void init() {
         System.out.println("PhoneBook tests started");
@@ -28,13 +31,10 @@ public class PhoneBookTest {
     @Test
     void addMethodTestAddContact() {
         System.out.println("add method test: add contact");
-        // given:
-        String name = "Test";
-        int number = 1;
         // when:
-        phoneBook.add(name, number);
+        phoneBook.add(testName, testNumber);
         // then:
-        Assertions.assertTrue(phoneBook.getPhoneBook().containsKey(name));
+        Assertions.assertTrue(phoneBook.getPhoneBook().containsKey(testName));
         System.out.println("add contact - checked");
     }
 
@@ -42,11 +42,9 @@ public class PhoneBookTest {
     void addMethodTestAmountNumbers() {
         System.out.println("add method test: amount numbers");
         // given:
-        String name = "Test";
-        int number = 1;
         int amountNumber = 1;
         // when:
-        int test = phoneBook.add(name, number);
+        int test = phoneBook.add(testName, testNumber);
         // then:
         Assertions.assertEquals(amountNumber, test);
         System.out.println("amount numbers - checked");
@@ -56,16 +54,38 @@ public class PhoneBookTest {
     @Test
     void addTestThrowsException() {
         System.out.println("add method test: throws Exception");
-        // given:
-        String name1 = "Test";
-        int number = 1;
         // when:
-        phoneBook.add(name1, number);
+        phoneBook.add(testName, testNumber);
         RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () ->
-                phoneBook.add(name1, number)
+                phoneBook.add(testName, testNumber)
         );
         // then:
         Assertions.assertEquals("Контакт с таким именем уже есть", exception.getMessage());
         System.out.println("throws Exception - checked");
     }
+
+    @Test
+    void findByNumberTest() {
+        System.out.println("findByNumber test");
+        // given:
+        phoneBook.add(testName, testNumber);
+        // when:
+        String foundName = phoneBook.findByNumber(testNumber);
+        // then:
+        Assertions.assertEquals(testName, foundName);
+        System.out.println("findByNumber - checked");
+    }
+
+    @Test
+    void findByNumberNotContainsTest() {
+        System.out.println("findByNumber: not contains test");
+        // given:
+        String testMessage = "Контакта с таким номером нет";
+        // when:
+        String foundName = phoneBook.findByNumber(testNumber);
+        // then:
+        Assertions.assertEquals(testMessage, foundName);
+        System.out.println("not contains - checked");
+    }
+
 }

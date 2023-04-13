@@ -18,4 +18,8 @@ public class PhoneBook {
         return phoneBook.size();
     }
 
+    public String findByNumber (Integer number){
+        return null;
+    }
+
 }
