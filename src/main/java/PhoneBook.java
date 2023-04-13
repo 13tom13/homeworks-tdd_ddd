@@ -3,14 +3,19 @@ import java.util.Map;
 
 public class PhoneBook {
 
-    private Map <String, Integer> phoneBook = new HashMap<>();
+    private final Map <String, Integer> phoneBook = new HashMap<>();
 
     public Map<String, Integer> getPhoneBook() {
         return phoneBook;
     }
 
     public int add (String name, int number){
-        return 0;
+        if (phoneBook.containsKey(name)){
+            throw new RuntimeException("Контакт с таким именем уже есть");
+        } else {
+            phoneBook.put(name, number);
+        }
+        return phoneBook.size();
     }
 
 }

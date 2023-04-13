@@ -1,28 +1,41 @@
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 public class PhoneBookTest {
 
     PhoneBook phoneBook;
+
+    @BeforeAll
+    public static void init() {
+        System.out.println("PhoneBook tests started");
+    }
+
+    @AfterAll
+    public static void end() {
+        System.out.println("PhoneBook tests finished");
+    }
 
     @BeforeEach
     void beforeEach() {
         phoneBook = new PhoneBook();
     }
 
+    @AfterEach
+    void afterEach() {
+        phoneBook = null;
+    }
+
 
     @Test
-    void addMethodTest() {
-        System.out.println("add method test");
+    void addMethodTestAddContact() {
+        System.out.println("add method test: add contact");
         // given:
         String name = "Test";
         int number = 1;
         // when:
-        int test = phoneBook.add(name, number);
+        phoneBook.add(name, number);
         // then:
         Assertions.assertTrue(phoneBook.getPhoneBook().containsKey(name));
-        System.out.println("Add test - checked");
+        System.out.println("add contact - checked");
     }
 
     @Test
