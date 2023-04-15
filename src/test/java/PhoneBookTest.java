@@ -5,7 +5,7 @@ public class PhoneBookTest {
     PhoneBook phoneBook;
 
     String testName = "Test";
-    Integer testNumber = 1;
+    String testNumber = "1";
 
     @BeforeAll
     public static void init() {
@@ -88,4 +88,27 @@ public class PhoneBookTest {
         System.out.println("not contains - checked");
     }
 
+    @Test
+    void findByNameTest() {
+        System.out.println("findByName test");
+        // given:
+        phoneBook.add(testName, testNumber);
+        // when:
+        String foundNumber = phoneBook.findByName(testName);
+        // then:
+        Assertions.assertEquals(testNumber, foundNumber);
+        System.out.println("findByName - checked");
+    }
+
+    @Test
+    void findByNameNotContainsTest() {
+        System.out.println("findByName: not contains test");
+        // given:
+        String testMessage = "Контакта с таким именем нет";
+        // when:
+        String foundName = phoneBook.findByName(testName);
+        // then:
+        Assertions.assertEquals(testMessage, foundName);
+        System.out.println("not contains - checked");
+    }
 }
