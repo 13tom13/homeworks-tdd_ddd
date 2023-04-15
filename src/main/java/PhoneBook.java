@@ -1,12 +1,10 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class PhoneBook {
 
     private final Map<String, String> phoneBook = new HashMap<>();
 
-    public Map<String, String> getPhoneBook() {
+    protected Map<String, String> getPhoneBook() {
         return phoneBook;
     }
 
@@ -30,6 +28,10 @@ public class PhoneBook {
 
     public String findByName (String name){
         return phoneBook.getOrDefault(name, "Контакта с таким именем нет");
+    }
+
+    public void printAllNames (){
+
     }
 
 }

@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.*;
 
+import java.util.Map;
+
 public class PhoneBookTest {
 
     PhoneBook phoneBook;
@@ -110,5 +112,31 @@ public class PhoneBookTest {
         // then:
         Assertions.assertEquals(testMessage, foundName);
         System.out.println("not contains - checked");
+    }
+
+    @Test
+    void printAllNamesTest() {
+        System.out.println("printAllNames: not contains test");
+        // given:
+        boolean isAlphabet = true;
+        phoneBook.add("Kate", "1");
+        phoneBook.add("Kbte", "3");
+        phoneBook.add("Kcte", "4");
+        phoneBook.add("Abbe", "5");
+        // when:
+        String previousName = null;
+        for (Map.Entry<String, String> contakt : phoneBook.getPhoneBook().entrySet()) {
+            if (previousName == null) {
+                previousName = contakt.getKey();
+            } else if (previousName.compareTo(contakt.getKey()) <= 0) {
+                previousName = contakt.getKey();
+            } else {
+                isAlphabet = false;
+                break;
+            }
+        }
+        // then:
+        Assertions.assertTrue(isAlphabet);
+        System.out.println("printAllNames - checked");
     }
 }
