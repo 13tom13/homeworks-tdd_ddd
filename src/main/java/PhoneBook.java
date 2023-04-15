@@ -2,7 +2,7 @@ import java.util.*;
 
 public class PhoneBook {
 
-    private final Map<String, String> phoneBook = new HashMap<>();
+    private final Map<String, String> phoneBook = new TreeMap<>();
 
     protected Map<String, String> getPhoneBook() {
         return phoneBook;
@@ -31,7 +31,9 @@ public class PhoneBook {
     }
 
     public void printAllNames (){
-
+        for (Map.Entry<String, String> contakt : phoneBook.entrySet()){
+            System.out.println(contakt.getKey() + ":" + contakt.getValue());
+        }
     }
 
 }
