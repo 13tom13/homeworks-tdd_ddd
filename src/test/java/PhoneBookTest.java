@@ -5,7 +5,7 @@ public class PhoneBookTest {
     PhoneBook phoneBook;
 
     String testName = "Test";
-    int testNumber = 1;
+    Integer testNumber = 1;
 
     @BeforeAll
     public static void init() {
